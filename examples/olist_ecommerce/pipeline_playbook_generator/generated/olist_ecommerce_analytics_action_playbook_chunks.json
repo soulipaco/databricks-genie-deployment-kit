@@ -1,0 +1,72 @@
+[
+  {
+    "chunk_id": 1,
+    "title": "Playbook Overview",
+    "text": "[Section: Playbook Overview]\n\nRoom title: Olist E-Commerce Operations Analytics\nGenerated from: olist_ecommerce_deployment_kit\nAction plan playbook for the Olist e-commerce operations demo. Generated from the deployment kit metadata, enriched diagnostic tables, and Genie operating rules.",
+    "source": "Olist E-Commerce Operations Analytics_action_playbook.md",
+    "question_category": "cross_source_playbook"
+  },
+  {
+    "chunk_id": 2,
+    "title": "KPI Reference and How to Interpret Shifts",
+    "text": "[Section: KPI Reference and How to Interpret Shifts]\n\nThis playbook converts Genie diagnostics into operational recommendations for category performance, delivery reliability, customer review quality, and Pareto-based prioritization.\nKPIs covered:\n- total_order_value: Total merchandise/order value, excluding freight.\n- order_count: Distinct order count.\n- late_delivery_rate: Share of delivered orders arriving after estimated delivery.\n- average_review_score: Average customer review score for reviewed orders.\n- review_score_gap_late_vs_on_time: Observed review score gap between on-time and late delivered orders.\n- late_delivery_rate_reduction_gap_to_4_2_review: Modeled reduction in late delivery rate needed to reach a 4.2 review score when feasible.\nGeneral interpretation rules:\n- Always prioritize issues using both operational risk and business contribution.\n- Use Pareto buckets to distinguish high-impact categories or states from long-tail noise.\n- Treat target-gap fields as modeled what-if estimates, not causal proof.\n- If on-time review scores are below 4.2, late-delivery reduction alone is insufficient.\n- For review questions, check review coverage and avoid overinterpreting tiny segments.\n- Grain context: See KNOWLEDGE_BASE.md Source Table section.\nMetric view: workspace.olist_ecommerce.olist_order_metrics_mv\nUnderlying source: workspace.olist_ecommerce.olist_order_metrics_mv\nPrimary filters: order_id, customer_id, order_status, customer_city, customer_state, seller_city, seller_state, product_category",
+    "source": "Olist E-Commerce Operations Analytics_action_playbook.md",
+    "question_category": "olist_operations"
+  },
+  {
+    "chunk_id": 3,
+    "title": "Scenario A - High-Value Category With Elevated Late Delivery",
+    "text": "[Section: Scenario A - High-Value Category With Elevated Late Delivery]\n\nSymptoms:\n- Product category has order_value_share above 1% and late_delivery_rate above 8%.\n- Category appears in the Pareto top 80 percent of order value.\nLikely causes:\n- Fulfillment constraints in high-volume categories.\n- Seller capacity mismatch for popular products.\n- Freight network delays concentrated in a few seller or customer states.\nAction plan recommendations:\n1. Immediate actions (today-48h)\n- Rank affected categories by order_value_share and late_delivery_rate.\n- Split the category by seller_state and customer_state to isolate concentration.\n- Check whether late orders also show lower review scores.\n2. Short-term actions (1-4 weeks)\n- Create seller outreach for high-value late-delivery categories.\n- Review carrier handoff and shipping-limit patterns for the category.\n- Monitor daily late_delivery_rate and review_score_gap_late_vs_on_time.\nMeasurement targets:\n- Reduce late_delivery_rate for prioritized categories by 10-20% relative.\n- Improve average_review_score or reduce review_score_gap_late_vs_on_time.",
+    "source": "Olist E-Commerce Operations Analytics_action_playbook.md",
+    "question_category": "olist_operations"
+  },
+  {
+    "chunk_id": 4,
+    "title": "Scenario B - Late Delivery Strongly Affects Review Score",
+    "text": "[Section: Scenario B - Late Delivery Strongly Affects Review Score]\n\nSymptoms:\n- review_score_gap_late_vs_on_time is among the largest category gaps.\n- avg_review_when_late is materially lower than avg_review_when_on_time.\nLikely causes:\n- Customer expectations are highly delivery-sensitive in this category.\n- Long delivery times create dissatisfaction independent of product quality.\n- Communication gaps around delayed delivery.\nAction plan recommendations:\n1. Immediate actions (today-48h)\n- List categories by review_score_gap_late_vs_on_time descending.\n- Separate categories where average_review_score is already below target.\n- Inspect whether late deliveries are concentrated in specific customer states.\n2. Short-term actions (1-4 weeks)\n- Add proactive delay messaging for sensitive categories.\n- Set delivery reliability targets for sellers in high-gap categories.\n- Track avg_review_when_late and avg_review_when_on_time separately.\nMeasurement targets:\n- Narrow review_score_gap_late_vs_on_time.\n- Increase avg_review_when_late without degrading on-time order review scores.",
+    "source": "Olist E-Commerce Operations Analytics_action_playbook.md",
+    "question_category": "olist_operations"
+  },
+  {
+    "chunk_id": 5,
+    "title": "Scenario C - Review Target Gap To 4.2",
+    "text": "[Section: Scenario C - Review Target Gap To 4.2]\n\nSymptoms:\n- late_delivery_rate_reduction_gap_to_4_2_review is positive and large.\n- review_4_2_target_status is late_delivery_reduction_can_help.\nLikely causes:\n- Late delivery is a material lever for review improvement.\n- A small number of categories may need disproportionate delivery improvement.\n- Current late delivery rate exceeds modeled target rate.\nAction plan recommendations:\n1. Immediate actions (today-48h)\n- Rank categories by late_delivery_rate_reduction_gap_to_4_2_review.\n- Exclude categories where review_4_2_target_status says late delivery alone is insufficient.\n- Pair each category with order_count to avoid overfitting small samples.\n2. Short-term actions (1-4 weeks)\n- Set category-specific late delivery thresholds.\n- Review seller/carrier performance for the target-gap categories.\n- Create dashboard alerts for categories drifting away from required late delivery rate.\nMeasurement targets:\n- Move late_delivery_rate toward late_delivery_rate_needed_for_4_2_review.\n- Increase average_review_score toward 4.2 while maintaining order volume.",
+    "source": "Olist E-Commerce Operations Analytics_action_playbook.md",
+    "question_category": "olist_operations"
+  },
+  {
+    "chunk_id": 6,
+    "title": "Scenario D - Customer-State Pareto Concentration",
+    "text": "[Section: Scenario D - Customer-State Pareto Concentration]\n\nSymptoms:\n- A small set of customer states drives the Pareto top 80 percent of orders.\n- One of those states also has low average_review_score or high late_delivery_rate.\nLikely causes:\n- Geographic demand concentration amplifies localized delivery issues.\n- Carrier performance varies by destination state.\n- Regional customer expectations differ.\nAction plan recommendations:\n1. Immediate actions (today-48h)\n- Rank customer states by order_count_share and cumulative_order_count_share.\n- Overlay late_delivery_rate and average_review_score for Pareto states.\n- Identify whether issues are customer-state or seller-state driven.\n2. Short-term actions (1-4 weeks)\n- Prioritize operational review for Pareto states with poor review or delivery metrics.\n- Create region-specific delivery improvement targets.\n- Track state-level metrics in the AI/BI dashboard.\nMeasurement targets:\n- Improve late_delivery_rate in Pareto states.\n- Lift average_review_score for high-volume low-score states.",
+    "source": "Olist E-Commerce Operations Analytics_action_playbook.md",
+    "question_category": "olist_operations"
+  },
+  {
+    "chunk_id": 7,
+    "title": "Action Card: Pareto Category Triage",
+    "text": "[Section: Action Card: Pareto Category Triage]\n\nTrigger: A category is in pareto_top_80_value and has elevated late delivery.\nActions:\n- Rank by order_value_share, then by late_delivery_rate.\n- Check review_score_gap_late_vs_on_time before prioritizing.\n- Create category-specific owner and target.\nExpected impact: Focuses operations on segments with both business impact and customer risk.",
+    "source": "Olist E-Commerce Operations Analytics_action_playbook.md",
+    "question_category": "olist_operations"
+  },
+  {
+    "chunk_id": 8,
+    "title": "Action Card: 4.2 Review Target Feasibility Check",
+    "text": "[Section: Action Card: 4.2 Review Target Feasibility Check]\n\nTrigger: A stakeholder asks how to reach a 4.2 average review score.\nActions:\n- Use review_4_2_target_status to determine feasibility.\n- If feasible, use late_delivery_rate_reduction_gap_to_4_2_review.\n- If infeasible, add non-delivery CX interventions.\nExpected impact: Prevents overclaiming what delivery improvements alone can accomplish.",
+    "source": "Olist E-Commerce Operations Analytics_action_playbook.md",
+    "question_category": "olist_operations"
+  },
+  {
+    "chunk_id": 9,
+    "title": "Action Card: Late Delivery Review Gap Drilldown",
+    "text": "[Section: Action Card: Late Delivery Review Gap Drilldown]\n\nTrigger: review_score_gap_late_vs_on_time is high.\nActions:\n- Compare avg_review_when_late and avg_review_when_on_time.\n- Filter to categories with adequate order_count.\n- Prioritize categories where late_delivery_rate is also high.\nExpected impact: Identifies where delivery reliability most visibly affects customer satisfaction.",
+    "source": "Olist E-Commerce Operations Analytics_action_playbook.md",
+    "question_category": "olist_operations"
+  },
+  {
+    "chunk_id": 10,
+    "title": "Example Plan 1 - Audio category has high late delivery and low late-order reviews",
+    "text": "[Section: Example Plan 1 - Audio category has high late delivery and low late-order reviews]\n\nObserved trend: Audio appears with elevated late_delivery_rate and a large review_score_gap_late_vs_on_time.\nPlan:\n- Validate late delivery concentration by seller_state and customer_state.\n- Create a seller/carrier follow-up list for delayed audio orders.\n- Track late_delivery_rate, avg_review_when_late, and average_review_score weekly.\nSuccess metrics: Late delivery rate falls, average late-order review score improves, and review score gap narrows.",
+    "source": "Olist E-Commerce Operations Analytics_action_playbook.md",
+    "question_category": "olist_operations"
+  }
+]

@@ -39,6 +39,7 @@ It uses the public Olist Brazilian E-Commerce dataset and demonstrates:
 - Genie room deployment from local files
 - AI/BI dashboard planning
 - benchmark questions for quality checks
+- action-plan pipeline example with generated RAG playbook assets
 
 The deployed demo model includes:
 
@@ -107,6 +108,8 @@ The Olist example includes:
 - [Genie room deploy script](examples/olist_ecommerce/deploy_genie_room.py)
 - [AI/BI dashboard brief](examples/olist_ecommerce/dashboard/dashboard_brief.md)
 - [Starter dashboard SQL](examples/olist_ecommerce/dashboard/starter_queries.sql)
+- [Action-plan pipeline example](examples/olist_ecommerce/pipeline/README.md)
+- [Generated Olist action playbook](examples/olist_ecommerce/pipeline_playbook_generator/generated/olist_ecommerce_analytics_action_playbook.md)
 - Databricks notebook-style scripts in `examples/olist_ecommerce/databricks/`
 
 ## Public Dataset Attribution
@@ -128,4 +131,3 @@ Check the Kaggle dataset page for the current license and attribution requiremen
 ## For AI Coding Agents
 
 Read [AGENTS.md](AGENTS.md) first. It contains the full operating manual, file contracts, Genie API notes, and task runbooks.
-

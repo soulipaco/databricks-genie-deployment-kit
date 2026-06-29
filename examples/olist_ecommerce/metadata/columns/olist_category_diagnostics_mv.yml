@@ -1,8 +1,17 @@
 table: "workspace.olist_ecommerce.olist_category_diagnostics_mv"
 columns:
+  # Dimensions
   - column_name: product_category
     enable_entity_matching: true
     build_value_dictionary: true
+  - column_name: pareto_order_value_bucket
+    enable_entity_matching: true
+    build_value_dictionary: true
+  - column_name: review_4_2_target_status
+    enable_entity_matching: true
+    build_value_dictionary: true
+
+  # Measures
   - column_name: order_count
     exclude: false
   - column_name: total_order_value
@@ -37,12 +46,6 @@ columns:
     exclude: false
   - column_name: order_value_rank
     exclude: false
-  - column_name: pareto_order_value_bucket
-    enable_entity_matching: true
-    build_value_dictionary: true
-  - column_name: review_4_2_target_status
-    enable_entity_matching: true
-    build_value_dictionary: true
   - column_name: late_delivery_rate_needed_for_4_2_review
     exclude: false
   - column_name: late_delivery_rate_reduction_gap_to_4_2_review

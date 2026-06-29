@@ -1,0 +1,18 @@
+{
+  "kit_root": "examples/olist_ecommerce",
+  "kit_format": "genie_kit",
+  "room_name": "olist_ecommerce_analytics",
+  "playbook_title": "Olist E-Commerce Operations Analytics - Action Playbook",
+  "playbook_path": "examples/olist_ecommerce/pipeline_playbook_generator/generated/olist_ecommerce_analytics_action_playbook.md",
+  "chunks_path": "examples/olist_ecommerce/pipeline_playbook_generator/generated/olist_ecommerce_analytics_action_playbook_chunks.json",
+  "pdf_output_dir": "examples/olist_ecommerce/pipeline_playbook_generator/generated/pdfs",
+  "pdf_paths": [
+    "examples/olist_ecommerce/pipeline_playbook_generator/generated/pdfs/olist_ecommerce_analytics_olist_operations_action_playbook.pdf"
+  ],
+  "domain_count": 1,
+  "chunk_count": 10,
+  "question_categories": [
+    "cross_source_playbook",
+    "olist_operations"
+  ]
+}

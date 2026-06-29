@@ -17,6 +17,7 @@ Create a public portfolio project that shows:
 - a Genie-ready gold table
 - semantic metadata and sample questions
 - AI/BI dashboard planning
+- generated action playbooks for RAG-backed action planning
 - benchmark questions for deployment quality
 
 ## Target Gold Table
@@ -83,3 +84,13 @@ Use `dashboard/dashboard_brief.md` for the first dashboard draft. The recommende
 - Review quality
 - Geography and product category drilldowns
 
+## Action-Plan Pipeline
+
+Use `pipeline/README.md` for the Olist adaptation of the generic action-plan pipeline. It connects Genie Deep Research, a generated Olist playbook, Vector Search retrieval, and LLM-generated action plans that can be written back to Delta tables.
+
+Generated playbook assets live in `pipeline_playbook_generator/generated/`:
+
+- markdown playbook
+- Vector Search chunk JSON
+- PDF source file for indexing
+- generation summary

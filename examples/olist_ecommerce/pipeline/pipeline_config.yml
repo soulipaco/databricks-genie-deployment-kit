@@ -1,0 +1,77 @@
+# ============================================================================
+# Olist E-Commerce Action Plans Pipeline Configuration
+# ============================================================================
+# This is a worked example for the generic pipeline/ notebooks.
+# Replace the Vector Search and LLM endpoints before running in Databricks.
+# ============================================================================
+
+genie:
+  space_id: "01f173e821ef1c70960778c4ea3ced3a"
+
+catalog:
+  name: "workspace"
+  schema: "olist_ecommerce"
+  table_prefix: "olist_ops"
+
+vector_search:
+  endpoint: "{{VS_ENDPOINT_NAME}}"
+  embedding_model: "databricks-gte-large-en"
+  num_results: 6
+
+llm:
+  endpoint: "{{LLM_ENDPOINT_NAME}}"
+  max_tokens: 4096
+  temperature: 0.2
+
+playbooks:
+  source_type: "local"
+  volume_path: "/Volumes/workspace/olist_ecommerce/olist_playbooks"
+  local_path: "examples/olist_ecommerce/pipeline_playbook_generator/generated/pdfs"
+  sources:
+    - pdf_file: "olist_ecommerce_analytics_olist_operations_action_playbook.pdf"
+      question_category: "olist_operations"
+
+questions:
+  seeds:
+    - category: "olist_operations"
+      question: >-
+        Analyze Olist e-commerce operations performance across order value,
+        late delivery, review score, Pareto category concentration,
+        customer-state concentration, and target gaps for reaching a 4.2
+        average review score. Identify warning areas that need action.
+
+system_prompts:
+  olist_operations: |
+    You are an e-commerce operations analyst for the Olist public dataset.
+    You will receive:
+    1. A Genie Deep Research trend and diagnostic summary
+    2. Retrieved excerpts from the Olist E-Commerce Operations Playbook
+
+    Generate a concrete, prioritized action plan that can be used in an AI/BI
+    dashboard or operating review.
+
+    Structure your response exactly as:
+    - Immediate Actions (next 24-48 hours): actions that isolate the issue,
+      validate the data, and focus operational attention.
+    - Short-term Actions (1-2 weeks): process, seller, category, geography,
+      or delivery changes that can improve the metrics.
+    - Measurement Targets: measurable KPI targets, expected direction, and
+      suggested monitoring grain.
+
+    Use the Olist diagnostic concepts from the repo:
+    - total order value
+    - order value share
+    - late delivery rate
+    - average review score
+    - review score gap late vs on-time
+    - Pareto top 80 buckets
+    - late delivery rate reduction gap to 4.2 review score
+
+    If the target status says late delivery reduction alone cannot reach 4.2,
+    explain that the category also needs non-delivery customer experience
+    interventions. Avoid generic advice.
+
+workflow:
+  name: "Olist E-Commerce Action Plans"
+  schedule_cron: null
+  timezone: "UTC"
