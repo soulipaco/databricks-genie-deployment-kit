@@ -23,6 +23,21 @@ This dashboard is the visual layer of the Genie deployment kit:
 5. The published AI/BI dashboard turns the same governed tables into an interactive executive demo.
 6. The generated action playbook extends the demo into recommendation and action-planning workflows.
 
+## Why Genie Makes Dashboard Creation Easier
+
+An existing Genie room gives the dashboard a head start because the hard analytical thinking is already captured:
+
+- trusted source tables are already selected
+- business-friendly column metadata is already documented
+- common measures and filters are already defined
+- high-value questions are already represented as example SQL
+- benchmark questions show what stakeholders care about most
+- diagnostic fields already encode patterns worth visualizing
+
+That means the dashboard can be built from a stronger starting point: instead of guessing which charts matter, the dashboard pages can be shaped around the Genie room's tested questions and semantic model.
+
+In this demo, the same Olist gold and diagnostic tables support both the conversational Genie experience and the published AI/BI dashboard.
+
 ## Suggested Review Flow
 
 Use the dashboard to inspect:

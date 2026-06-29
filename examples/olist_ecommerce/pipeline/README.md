@@ -9,10 +9,13 @@ The goal is to show a complete analytics-agent workflow:
 3. Retrieved playbook context is passed to an LLM endpoint.
 4. The pipeline writes prioritized action plans to Delta tables for dashboarding or review.
 
+For the production operating pattern, see [PRODUCTION_PLAYBOOK.md](PRODUCTION_PLAYBOOK.md).
+
 ## Config Files
 
 - `pipeline_config.yml` configures the runtime pipeline for this demo.
 - `../pipeline_playbook_generator/config/playbook_blueprint.yml` defines the Olist action playbook content.
+- `PRODUCTION_PLAYBOOK.md` explains how this pattern can be governed in a real analytics environment.
 
 ## Required Workspace Values
 
@@ -47,6 +50,17 @@ Then in Databricks, copy or adapt:
 - `pipeline/action_plans.py`
 
 Use this folder's `pipeline_config.yml` as the config source.
+
+## Production Use
+
+In a production workspace, the playbook should become reviewed operational content:
+
+- generate playbook markdown and PDF from Git-reviewed metadata
+- upload reviewed PDFs to a Unity Catalog Volume
+- index chunks in Databricks Vector Search
+- retrieve scenario-specific guidance when Genie identifies a metric movement
+- send the trend summary and retrieved context to a governed LLM endpoint
+- write the resulting action plan to a Delta table with reviewer status and lineage
 
 ## Seed Analysis Question
 
