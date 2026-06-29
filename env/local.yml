@@ -1,0 +1,13 @@
+# env/local.yml — Local Development Environment Configuration
+# NEVER commit real credentials to version control
+# Copy this file to env/local.local.yml for your personal credentials
+
+environment: local
+workspace_url: https://{{DATABRICKS_WORKSPACE_HOST}}    # e.g. https://adb-1234567890.12.azuredatabricks.net
+warehouse_id: {{SQL_WAREHOUSE_ID}}                       # SQL warehouse ID from Databricks UI
+space_id: {{GENIE_SPACE_ID}}                             # Genie space ID (null if creating new)
+parent_path: {{WORKSPACE_FOLDER_PATH}}                   # e.g. /Users/user@company.com
+
+# Optional: override deploy behavior
+# dry_run: false                                         # Set to true to validate without deploying
+# skip_benchmarks: false                                 # Set to true to skip benchmark deployment

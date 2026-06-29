@@ -1,0 +1,11 @@
+id: b1c2d3e4f5a6789012345678901234f1
+display_name: By Region
+sql: region ILIKE '%:Region%'
+synonyms:
+  - region filter
+  - by geography
+instruction: |
+  WHEN_TO_USE: Apply when the user wants to filter data by geographic region.
+  SCOPE_TABLES: sample_catalog.analytics_schema.sales_performance_mv.
+  TIMEFRAME_HINT: any.
+  RISK_IF_MISUSED: Do not apply if the question uses region as a grouping dimension (no filter needed in that case).

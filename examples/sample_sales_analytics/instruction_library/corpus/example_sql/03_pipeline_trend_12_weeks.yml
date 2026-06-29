@@ -1,0 +1,19 @@
+id: d1e2f3a4b5c6789012345678901234e3
+question: How has pipeline value trended over the last 12 weeks?
+sql: |-
+  SELECT
+    DATE_TRUNC('WEEK', month_start_date) AS week_start,
+    MEASURE(pipeline_value) AS pipeline_value
+  FROM sample_catalog.analytics_schema.sales_performance_mv
+  WHERE month_start_date >= DATE_SUB(DATE_TRUNC('WEEK', CURRENT_DATE()), 84)
+    AND month_start_date < DATE_TRUNC('WEEK', CURRENT_DATE())
+  GROUP BY ALL
+  ORDER BY week_start
+usage_guidance: |
+  TRIGGER PHRASES:
+    Use for: "pipeline trend", "how has pipeline changed", "weekly pipeline value", "12 week pipeline trend"
+  DATE BINDING:
+    12 weeks back = DATE_SUB(DATE_TRUNC('WEEK', CURRENT_DATE()), 84)
+    End = DATE_TRUNC('WEEK', CURRENT_DATE()) (exclusive, last complete week)
+  MANDATORY OUTPUT CONTRACT: week_start, pipeline_value
+  MANDATORY ANTI-PATTERNS: Do NOT include the current incomplete week.

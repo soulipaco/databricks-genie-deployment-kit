@@ -1,0 +1,14 @@
+id: 8f1a2b3c4d5e6f708192a3b4c5d6e004
+question: Do late deliveries have lower review scores than on-time deliveries?
+sql: |-
+  SELECT
+    is_late_delivery,
+    COUNT(DISTINCT order_id) AS reviewed_orders,
+    ROUND(AVG(review_score), 2) AS average_review_score
+  FROM workspace.olist_ecommerce.olist_order_metrics_mv
+  WHERE has_review = true
+    AND order_status = 'delivered'
+  GROUP BY is_late_delivery
+  ORDER BY is_late_delivery DESC
+expected_behavior: |-
+  Compare average review score for late versus on-time delivered orders.

@@ -1,0 +1,12 @@
+id: e1f2a3b4c5d6789012345678901234b4
+question: How has deal close rate trended over the last 6 months by month?
+answer_format: SQL
+sql: |-
+  SELECT
+    DATE_TRUNC('MONTH', month_start_date) AS month,
+    CONCAT(ROUND(MEASURE(deal_close_rate) * 100, 2), '%') AS deal_close_rate
+  FROM sample_catalog.analytics_schema.sales_performance_mv
+  WHERE month_start_date >= ADD_MONTHS(DATE_TRUNC('MONTH', CURRENT_DATE()), -5)
+    AND month_start_date < ADD_MONTHS(DATE_TRUNC('MONTH', CURRENT_DATE()), 1)
+  GROUP BY ALL
+  ORDER BY month

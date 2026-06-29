@@ -1,0 +1,4 @@
+asset_type: measures
+active_ids:
+  # Add active measure IDs here following the format:
+  # - <32-char hex>   # NN_snippet_slug.yml

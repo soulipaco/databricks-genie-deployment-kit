@@ -1,0 +1,5 @@
+asset_type: example_sql
+active_ids:
+  - d1e2f3a4b5c6789012345678901234e1   # 01_revenue_by_region_last_6_months.yml
+  - d1e2f3a4b5c6789012345678901234e2   # 02_top_account_managers_by_close_rate.yml
+  - d1e2f3a4b5c6789012345678901234e3   # 03_pipeline_trend_12_weeks.yml

@@ -1,0 +1,21 @@
+id: 8f1a2b3c4d5e6f708192a3b4c5d6e008
+question: To reach a 4.2 average review score, which categories need the largest late delivery rate reduction?
+sql: |-
+  SELECT
+    product_category,
+    average_review_score,
+    late_delivery_rate,
+    review_4_2_target_status,
+    late_delivery_rate_needed_for_4_2_review,
+    late_delivery_rate_reduction_gap_to_4_2_review,
+    review_score_gap_late_vs_on_time,
+    order_count
+  FROM workspace.olist_ecommerce.olist_category_diagnostics_mv
+  WHERE review_4_2_target_status = 'late_delivery_reduction_can_help'
+    AND late_delivery_rate_reduction_gap_to_4_2_review IS NOT NULL
+    AND late_delivery_rate_reduction_gap_to_4_2_review > 0
+    AND order_count >= 100
+  ORDER BY late_delivery_rate_reduction_gap_to_4_2_review DESC
+  LIMIT 10
+expected_behavior: |-
+  Use modeled target-gap fields from category diagnostics and present current rate, required rate, and reduction gap.

@@ -1,0 +1,10 @@
+# Deactivated Snippets
+# IDs listed here were formerly active and are deliberately deactivated
+# Preserved for audit trail and potential reactivation
+
+deactivated:
+  # Format:
+  # - id: <32-char hex>
+  #   type: filters|measures|example_sql
+  #   reason: <why deactivated>
+  #   deactivated_date: YYYY-MM-DD

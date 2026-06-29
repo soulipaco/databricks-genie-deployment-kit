@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Local environments and secrets
+.env
+.env.*
+env/*.private.yml
+env/*.secrets.yml
+*.token
+*.secret
+
+# Generated kit outputs
+build/*
+!build/README.md
+reports/data/*.json
+reports/output/
+pipeline_playbook_generator/generated/
+snapshots/exported_space.json
+examples/*/raw_data/
+examples/*/downloads/
+
+# Databricks and local tooling
+.databricks/
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db

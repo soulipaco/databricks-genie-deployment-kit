@@ -1,0 +1,28 @@
+# Template: Example SQL (instruction_library entry)
+# Copy this to instruction_library/corpus/example_sql/NN_slug.yml
+
+id: {{32_CHAR_HEX_ID}}
+question: {{QUESTION_TEXT}}
+sql: |-
+  SELECT
+    {{OUTPUT_COLUMN_1}},
+    {{OUTPUT_COLUMN_2}}
+  FROM {{CATALOG}}.{{SCHEMA}}.{{TABLE}}
+  WHERE {{DATE_COL}} >= :StartDate
+    AND {{DATE_COL}} < :EndDateExclusive
+  GROUP BY ALL
+  ORDER BY {{SORT_COLUMN}} DESC
+  LIMIT 5
+parameters:
+  - name: StartDate
+    type_hint: DATE
+  - name: EndDateExclusive
+    type_hint: DATE
+usage_guidance: |
+  TRIGGER PHRASES: {{LIST_OF_QUESTION_PATTERNS}}
+  DATE BINDING:
+    StartDate = {{START_DATE_FORMULA}}
+    EndDateExclusive = {{END_DATE_FORMULA}}
+  MANDATORY OUTPUT CONTRACT: {{LIST_REQUIRED_COLUMNS}}
+  MANDATORY ANTI-PATTERNS: Do NOT {{WHAT_NOT_TO_DO}}.
+# _cleanup_flags: ['YYYY-MM-DD']    # Add if hardcoded dates present

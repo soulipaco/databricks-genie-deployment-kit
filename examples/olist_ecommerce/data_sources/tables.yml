@@ -1,0 +1,10 @@
+tables:
+  - identifier: "workspace.olist_ecommerce.olist_order_metrics_mv"
+    description: "One row per e-commerce order with customer geography, seller geography, product category mix, order value, freight, payment totals, review score, delivery duration, and late-delivery indicators."
+    column_metadata_file: "metadata/columns/olist_order_metrics_mv.yml"
+  - identifier: "workspace.olist_ecommerce.olist_category_diagnostics_mv"
+    description: "One row per product category with order value share, Pareto value bucket, late-delivery rate, review score, late-versus-on-time review gap, and target-gap fields for improving review score."
+    column_metadata_file: "metadata/columns/olist_category_diagnostics_mv.yml"
+  - identifier: "workspace.olist_ecommerce.olist_customer_state_diagnostics_mv"
+    description: "One row per customer state with order share, Pareto order bucket, late-delivery rate, review score, late-versus-on-time review gap, and target-gap fields for improving review score."
+    column_metadata_file: "metadata/columns/olist_customer_state_diagnostics_mv.yml"

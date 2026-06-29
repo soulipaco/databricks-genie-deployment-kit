@@ -1,0 +1,22 @@
+id: d1e2f3a4b5c6789012345678901234e2
+question: Who are the top 5 account managers by deal close rate this month?
+sql: |-
+  SELECT
+    account_manager,
+    CONCAT(ROUND(MEASURE(deal_close_rate) * 100, 2), '%') AS deal_close_rate
+  FROM sample_catalog.analytics_schema.sales_performance_mv
+  WHERE month_start_date >= DATE_TRUNC('MONTH', CURRENT_DATE())
+    AND month_start_date < CURRENT_DATE()
+  GROUP BY ALL
+  HAVING MEASURE(deal_close_rate) > 0
+  ORDER BY MEASURE(deal_close_rate) DESC
+  LIMIT 5
+usage_guidance: |
+  TRIGGER PHRASES:
+    Use for: "top account managers", "best performers by close rate", "who has the highest close rate"
+    N variants: default LIMIT 5 unless user specifies N
+  DATE BINDING:
+    This month: >= DATE_TRUNC('MONTH', CURRENT_DATE()) AND < CURRENT_DATE()
+    For "last month": use ADD_MONTHS(DATE_TRUNC('MONTH', CURRENT_DATE()), -1) AND DATE_TRUNC('MONTH', CURRENT_DATE())
+  MANDATORY OUTPUT CONTRACT: account_manager, deal_close_rate (formatted percentage)
+  MANDATORY ANTI-PATTERNS: Do NOT sum or average the deal_close_rate column — always use MEASURE().

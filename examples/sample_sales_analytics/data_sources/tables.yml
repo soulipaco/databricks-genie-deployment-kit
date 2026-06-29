@@ -1,0 +1,4 @@
+tables:
+  - identifier: sample_catalog.analytics_schema.sales_performance_mv
+    description: Monthly revenue performance metric view. One row per account per month. Contains pre-computed KPIs including monthly_revenue, deal_close_rate, and pipeline_value.
+    column_metadata_file: metadata/columns/sales_performance_mv.yml

@@ -1,0 +1,15 @@
+# Template: Simple Measure Snippet
+# Copy this to instruction_library/corpus/measures/NN_slug.yml
+# Run: python -c "import uuid; print(uuid.uuid4().hex)" to generate the id
+
+id: {{32_CHAR_HEX_ID}}
+alias: {{MEASURE_ALIAS}}              # snake_case output column name
+display_name: {{MEASURE_DISPLAY_NAME}}  # Human-readable title
+sql: MEASURE({{SOURCE_COLUMN_NAME}})  # Use MEASURE() for metric view KPIs
+synonyms:                             # Optional alternative names
+  - {{SYNONYM_1}}
+  - {{SYNONYM_2}}
+instruction: |                        # Optional - guidance for Genie
+  WHEN_TO_USE: Use to calculate {{WHAT_IT_MEASURES}}.
+  SCOPE_TABLES: {{TABLE_IDENTIFIER}}.
+  RISK_IF_MISUSED: {{RISK_DESCRIPTION}}.

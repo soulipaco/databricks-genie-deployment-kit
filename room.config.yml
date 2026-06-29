@@ -1,0 +1,67 @@
+# room.config.yml — Genie Room Configuration Template
+# Replace all {{PLACEHOLDER}} values before deploying
+# Run: python scripts/validate.py to verify configuration
+
+# ── Room Identity ──────────────────────────────────────────
+room_name: {{ROOM_NAME}}                        # Identifier used in API calls (no spaces)
+title: {{ROOM_DISPLAY_TITLE}}                   # Human-readable title shown in UI
+description: |-
+  {{ROOM_DESCRIPTION_LINE_1}}
+
+  Supported analysis includes:
+  - {{ANALYSIS_CAPABILITY_1}}
+  - {{ANALYSIS_CAPABILITY_2}}
+  - {{ANALYSIS_CAPABILITY_3}}
+
+  Use natural-language business questions.
+version: 2
+purpose: {{ROOM_PURPOSE_NOTE}}
+source_of_truth: repo
+parent_path: {{WORKSPACE_PARENT_PATH}}          # e.g. /Users/user@company.com
+
+# ── Sample Questions (shown in room UI) ───────────────────
+sample_questions:
+  - id: {{32_CHAR_HEX_ID_SQ1}}                  # python -c "import uuid; print(uuid.uuid4().hex)"
+    question: {{SAMPLE_QUESTION_1}}
+  - id: {{32_CHAR_HEX_ID_SQ2}}
+    question: {{SAMPLE_QUESTION_2}}
+  - id: {{32_CHAR_HEX_ID_SQ3}}
+    question: {{SAMPLE_QUESTION_3}}
+  - id: {{32_CHAR_HEX_ID_SQ4}}
+    question: {{SAMPLE_QUESTION_4}}
+  - id: {{32_CHAR_HEX_ID_SQ5}}
+    question: {{SAMPLE_QUESTION_5}}
+
+# ── Data Sources ───────────────────────────────────────────
+data_sources: data_sources/tables.yml           # Path to table definitions file
+column_metadata: metadata/columns/              # Directory containing per-table column configs
+
+# ── Instructions ───────────────────────────────────────────
+instructions:
+  general: instructions/general.md              # Deployed general instructions for Genie LLM
+  example_sql: instructions/example_sql/        # Active example SQL files
+  sql_snippets:
+    filters: instructions/sql_snippets/filters/ # Active filter snippets
+    measures: instructions/sql_snippets/measures/ # Active measure snippets
+    dimensions: instructions/sql_snippets/dimensions/ # Repo-only dimension helpers
+
+# ── Benchmarks ─────────────────────────────────────────────
+benchmarks: benchmarks/                         # Ground-truth Q&A pairs for accuracy testing
+
+# ── Bootstrap ──────────────────────────────────────────────
+bootstrap_snapshot: snapshots/exported_space.json  # Read-only reference snapshot
+
+# ── Capacity ───────────────────────────────────────────────
+# See instruction_library/activation/limits.yml for capacity configuration
+# See docs/cap_management/ for capacity management procedures
+
+# ── Environment ────────────────────────────────────────────
+# Environment-specific values (workspace URL, warehouse ID, space ID)
+# are stored in env/local.yml and env/prod.yml
+# NEVER embed these values in this file
+
+# ── Notes for AI Coding Agents ─────────────────────────────
+# 1. This file is the room manifest — changes here affect all deploys
+# 2. To deploy: python scripts/push_folder_to_room.py
+# 3. To pull latest: python scripts/pull_room_to_folder.py
+# 4. See AGENTS.md for complete instruction manual

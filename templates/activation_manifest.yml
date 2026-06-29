@@ -1,0 +1,12 @@
+# Template: Activation Manifest
+# Copy to instruction_library/activation/<type>.active.yml
+# asset_type must be: filters, measures, dimensions, or example_sql
+
+asset_type: {{ASSET_TYPE}}
+active_ids:
+  # --- Dimension filters (01-05) ---
+  - {{ID_01}}   # 01_snippet_name.yml
+  - {{ID_02}}   # 02_snippet_name.yml
+  # --- Temporal filters (06-10) ---
+  - {{ID_06}}   # 06_snippet_name.yml
+  # Add more IDs here following the same format

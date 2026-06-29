@@ -1,0 +1,16 @@
+id: 8f1a2b3c4d5e6f708192a3b4c5d6e006
+question: Which product categories make up the top 80 percent of order value?
+sql: |-
+  SELECT
+    order_value_rank,
+    product_category,
+    total_order_value,
+    order_value_share,
+    cumulative_order_value_share,
+    pareto_order_value_bucket
+  FROM workspace.olist_ecommerce.olist_category_diagnostics_mv
+  WHERE pareto_order_value_bucket = 'pareto_top_80_value'
+  ORDER BY order_value_rank
+expected_behavior: |-
+  Use the category diagnostics table and return categories in rank order until the cumulative order value share reaches the Pareto top bucket.
+

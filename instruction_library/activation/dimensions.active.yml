@@ -1,0 +1,4 @@
+asset_type: dimensions
+active_ids:
+  # Dimension helpers are repo-only (not deployed to room)
+  # This manifest is informational only

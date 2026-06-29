@@ -1,0 +1,19 @@
+id: 8f1a2b3c4d5e6f708192a3b4c5d6e007
+question: How does late delivery affect review score by product category?
+sql: |-
+  SELECT
+    product_category,
+    order_count,
+    late_delivery_rate,
+    avg_review_when_late,
+    avg_review_when_on_time,
+    review_score_gap_late_vs_on_time
+  FROM workspace.olist_ecommerce.olist_category_diagnostics_mv
+  WHERE order_count >= 100
+    AND avg_review_when_late IS NOT NULL
+    AND avg_review_when_on_time IS NOT NULL
+  ORDER BY review_score_gap_late_vs_on_time DESC
+  LIMIT 10
+expected_behavior: |-
+  Compare late and on-time review scores and rank categories by the observed review score gap.
+

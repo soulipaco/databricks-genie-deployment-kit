@@ -1,0 +1,14 @@
+id: e1f2a3b4c5d6789012345678901234b5
+question: Which are the top 5 regions by pipeline value this month?
+answer_format: SQL
+sql: |-
+  SELECT
+    region,
+    MEASURE(pipeline_value) AS pipeline_value
+  FROM sample_catalog.analytics_schema.sales_performance_mv
+  WHERE month_start_date >= DATE_TRUNC('MONTH', CURRENT_DATE())
+    AND month_start_date < CURRENT_DATE()
+  GROUP BY ALL
+  HAVING pipeline_value > 0
+  ORDER BY pipeline_value DESC
+  LIMIT 5

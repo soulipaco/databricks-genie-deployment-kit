@@ -1,0 +1,13 @@
+id: 6a7b8c9d0e1f4a2b8c9d0e1f4a2b0002
+alias: late_delivery_rate
+display_name: Late Delivery Rate
+sql: AVG(CASE WHEN is_late_delivery THEN 1 ELSE 0 END)
+synonyms:
+  - late rate
+  - delay rate
+  - delivery lateness
+instruction: |
+  WHEN_TO_USE: Use to calculate the share of delivered orders that arrived after the estimated delivery timestamp.
+  SCOPE_TABLES: workspace.olist_ecommerce.olist_order_metrics_mv.
+  RISK_IF_MISUSED: Filter to delivered orders when the question is specifically about delivery performance.
+

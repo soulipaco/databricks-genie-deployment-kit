@@ -1,0 +1,12 @@
+# Template: Data Sources / Tables Registration
+# This is data_sources/tables.yml
+# All table identifiers must be 3-level: catalog.schema.table_name
+
+tables:
+  - identifier: {{CATALOG}}.{{SCHEMA}}.{{TABLE_1}}
+    description: {{TABLE_1_DESCRIPTION}}
+    column_metadata_file: metadata/columns/{{TABLE_1}}.yml
+  - identifier: {{CATALOG}}.{{SCHEMA}}.{{TABLE_2}}
+    description: {{TABLE_2_DESCRIPTION}}
+    column_metadata_file: metadata/columns/{{TABLE_2}}.yml
+  # Add more tables here

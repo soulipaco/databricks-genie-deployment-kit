@@ -1,0 +1,13 @@
+id: 6a7b8c9d0e1f4a2b8c9d0e1f4a2b0003
+alias: average_review_score
+display_name: Average Review Score
+sql: AVG(review_score)
+synonyms:
+  - rating
+  - customer satisfaction
+  - review rating
+instruction: |
+  WHEN_TO_USE: Use to calculate average customer review score.
+  SCOPE_TABLES: workspace.olist_ecommerce.olist_order_metrics_mv.
+  RISK_IF_MISUSED: Filter to has_review = true for review-specific questions.
+

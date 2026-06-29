@@ -1,0 +1,12 @@
+id: 7a8b9c0d1e2f4a3b9c0d1e2f4a3b0001
+display_name: By Product Category
+sql: product_category ILIKE '%:ProductCategory%'
+synonyms:
+  - category
+  - product type
+instruction: |
+  WHEN_TO_USE: Apply when the user filters by product category.
+  SCOPE_TABLES: workspace.olist_ecommerce.olist_order_metrics_mv.
+  TIMEFRAME_HINT: any.
+  RISK_IF_MISUSED: Do not apply to customer or seller geography questions unless category is also requested.
+

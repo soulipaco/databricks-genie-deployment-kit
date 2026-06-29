@@ -1,0 +1,13 @@
+id: 8f1a2b3c4d5e6f708192a3b4c5d6e005
+question: Which seller states have the highest total freight value?
+sql: |-
+  SELECT
+    seller_state,
+    COUNT(DISTINCT order_id) AS order_count,
+    ROUND(SUM(freight_value), 2) AS total_freight_value
+  FROM workspace.olist_ecommerce.olist_order_metrics_mv
+  GROUP BY seller_state
+  ORDER BY total_freight_value DESC
+  LIMIT 5
+expected_behavior: |-
+  Rank seller states by total freight value and include order count for context.

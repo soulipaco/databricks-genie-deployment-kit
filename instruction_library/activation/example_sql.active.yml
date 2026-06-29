@@ -1,0 +1,4 @@
+asset_type: example_sql
+active_ids:
+  # Add active example SQL IDs here following the format:
+  # - <32-char hex>   # NN_question_slug.yml

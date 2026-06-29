@@ -1,0 +1,11 @@
+id: b1c2d3e4f5a6789012345678901234f2
+display_name: By Product Tier
+sql: product_tier ILIKE '%:ProductTier%'
+synonyms:
+  - product tier filter
+  - by tier
+instruction: |
+  WHEN_TO_USE: Apply when the user wants to restrict analysis to a specific product tier.
+  SCOPE_TABLES: sample_catalog.analytics_schema.sales_performance_mv.
+  TIMEFRAME_HINT: any.
+  RISK_IF_MISUSED: Do not apply to tables that do not have a product_tier column.

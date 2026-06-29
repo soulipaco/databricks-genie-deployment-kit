@@ -1,0 +1,22 @@
+# Sample evaluation summary after first benchmark run
+# Illustrates what analyze_benchmarks.py would produce
+
+total: 5
+passed: 4
+failed: 1
+pass_rate: 80.0
+
+failures:
+  - id: e1f2a3b4c5d6789012345678901234b3
+    question: What is the pipeline value by product tier for this month?
+    classification: 3
+    class_name: BENCHMARK-DEFECT
+    priority: P3
+    reason: Ground truth uses DATE_TRUNC('MONTH', CURRENT_DATE()) which misses data from today. Should use CURRENT_DATE() as end boundary.
+    fix_target: benchmark
+    fix_applied: Updated GT SQL to use CURRENT_DATE() as end_exclusive boundary.
+
+by_class:
+  3: 1
+by_priority:
+  P3: 1

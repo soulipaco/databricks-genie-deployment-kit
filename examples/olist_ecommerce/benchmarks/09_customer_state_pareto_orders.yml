@@ -1,0 +1,16 @@
+id: 8f1a2b3c4d5e6f708192a3b4c5d6e009
+question: Which customer states drive the Pareto top 80 percent of order volume?
+sql: |-
+  SELECT
+    order_count_rank,
+    customer_state,
+    order_count,
+    order_count_share,
+    cumulative_order_count_share,
+    pareto_order_count_bucket
+  FROM workspace.olist_ecommerce.olist_customer_state_diagnostics_mv
+  WHERE pareto_order_count_bucket = 'pareto_top_80_orders'
+  ORDER BY order_count_rank
+expected_behavior: |-
+  Use the customer state diagnostics table and return ranked states in the Pareto top order-volume bucket.
+

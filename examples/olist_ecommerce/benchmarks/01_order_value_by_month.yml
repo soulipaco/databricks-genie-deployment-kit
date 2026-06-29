@@ -1,0 +1,11 @@
+id: 8f1a2b3c4d5e6f708192a3b4c5d6e001
+question: What was total order value by month?
+sql: |-
+  SELECT
+    purchase_month,
+    ROUND(SUM(order_value), 2) AS total_order_value
+  FROM workspace.olist_ecommerce.olist_order_metrics_mv
+  GROUP BY purchase_month
+  ORDER BY purchase_month
+expected_behavior: |-
+  Return one row per purchase month ordered chronologically with total order value.

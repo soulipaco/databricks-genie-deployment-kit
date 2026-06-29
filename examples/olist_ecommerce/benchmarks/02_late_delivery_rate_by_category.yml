@@ -1,0 +1,15 @@
+id: 8f1a2b3c4d5e6f708192a3b4c5d6e002
+question: Which product categories have the highest late delivery rate?
+sql: |-
+  SELECT
+    product_category,
+    COUNT(DISTINCT order_id) AS order_count,
+    ROUND(AVG(CASE WHEN is_late_delivery THEN 1 ELSE 0 END), 4) AS late_delivery_rate
+  FROM workspace.olist_ecommerce.olist_order_metrics_mv
+  WHERE order_status = 'delivered'
+  GROUP BY product_category
+  HAVING order_count >= 100
+  ORDER BY late_delivery_rate DESC
+  LIMIT 5
+expected_behavior: |-
+  Rank product categories by late delivery rate, using delivered orders and a minimum order count guardrail.

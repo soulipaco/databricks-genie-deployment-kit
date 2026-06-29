@@ -1,0 +1,12 @@
+id: c1d2e3f4a5b6789012345678901234m1
+alias: monthly_revenue
+display_name: Monthly Revenue
+sql: MEASURE(monthly_revenue)
+synonyms:
+  - revenue
+  - sales revenue
+  - total revenue
+instruction: |
+  WHEN_TO_USE: Use to aggregate monthly revenue across any dimension.
+  SCOPE_TABLES: sample_catalog.analytics_schema.sales_performance_mv.
+  RISK_IF_MISUSED: Always use MEASURE() — do not SUM the monthly_revenue column directly. This is a pre-computed metric view measure.

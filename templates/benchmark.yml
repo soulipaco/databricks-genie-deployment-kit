@@ -1,0 +1,18 @@
+# Template: Benchmark Question
+# Copy this to benchmarks/NN_slug.yml
+# Ground-truth SQL MUST be semantically correct for this room
+
+id: {{32_CHAR_HEX_ID}}  # python -c "import uuid; print(uuid.uuid4().hex)"
+question: {{BENCHMARK_QUESTION_TEXT}}
+answer_format: SQL
+sql: |-
+  SELECT
+    {{OUTPUT_COLUMN_1}},
+    {{OUTPUT_COLUMN_2}}
+  FROM {{CATALOG}}.{{SCHEMA}}.{{TABLE}}
+  WHERE {{DATE_COL}} >= {{START_EXPR}}
+    AND {{DATE_COL}} < {{END_EXCLUSIVE_EXPR}}
+  GROUP BY ALL
+  ORDER BY {{SORT_COLUMN}} DESC
+  LIMIT {{N}}
+# _cleanup_flags: ['YYYY-MM-DD']    # Add if hardcoded dates present

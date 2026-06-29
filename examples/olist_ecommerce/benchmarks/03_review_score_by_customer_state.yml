@@ -1,0 +1,15 @@
+id: 8f1a2b3c4d5e6f708192a3b4c5d6e003
+question: Which customer states have the lowest average review score?
+sql: |-
+  SELECT
+    customer_state,
+    COUNT(DISTINCT order_id) AS reviewed_orders,
+    ROUND(AVG(review_score), 2) AS average_review_score
+  FROM workspace.olist_ecommerce.olist_order_metrics_mv
+  WHERE has_review = true
+  GROUP BY customer_state
+  HAVING reviewed_orders >= 100
+  ORDER BY average_review_score ASC
+  LIMIT 5
+expected_behavior: |-
+  Show the lowest-rated customer states, excluding states with very small review volume.

@@ -1,0 +1,20 @@
+# Template: Generic Instruction Library Snippet
+# For any asset type. Replace asset-type-specific fields as needed.
+# See templates/measure_simple.yml, filter_dimension.yml, etc. for type-specific templates.
+
+id: {{32_CHAR_HEX_ID}}
+# For measures and dimensions:
+alias: {{ALIAS}}
+# For filters and measures:
+display_name: {{DISPLAY_NAME}}
+# The SQL expression (see per-type templates for pattern):
+sql: {{SQL_EXPRESSION}}
+# Optional synonyms for Genie entity matching:
+synonyms:
+  - {{SYNONYM_1}}
+# Guidance for Genie LLM:
+instruction: |
+  WHEN_TO_USE: {{WHEN_TO_USE}}
+  SCOPE_TABLES: {{TABLE_IDENTIFIER}}
+  TIMEFRAME_HINT: {{TIMEFRAME}}
+  RISK_IF_MISUSED: {{RISK}}

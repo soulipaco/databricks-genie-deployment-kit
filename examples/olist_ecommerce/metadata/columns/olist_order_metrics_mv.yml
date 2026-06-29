@@ -1,0 +1,71 @@
+table: "workspace.olist_ecommerce.olist_order_metrics_mv"
+columns:
+  - column_name: order_id
+    enable_entity_matching: true
+    get_example_values: true
+  - column_name: customer_id
+    enable_entity_matching: true
+  - column_name: order_status
+    enable_entity_matching: true
+    build_value_dictionary: true
+  - column_name: purchase_date
+    enable_format_assistance: true
+  - column_name: purchase_month
+    enable_format_assistance: true
+  - column_name: customer_city
+    enable_entity_matching: true
+    build_value_dictionary: true
+  - column_name: customer_state
+    enable_entity_matching: true
+    build_value_dictionary: true
+  - column_name: seller_city
+    enable_entity_matching: true
+    build_value_dictionary: true
+  - column_name: seller_state
+    enable_entity_matching: true
+    build_value_dictionary: true
+  - column_name: product_category
+    enable_entity_matching: true
+    build_value_dictionary: true
+  - column_name: item_count
+    exclude: false
+  - column_name: seller_count
+    exclude: false
+  - column_name: order_value
+    exclude: false
+  - column_name: freight_value
+    exclude: false
+  - column_name: payment_value
+    exclude: false
+  - column_name: review_score
+    exclude: false
+  - column_name: delivery_days
+    exclude: false
+  - column_name: days_late
+    exclude: false
+  - column_name: is_late_delivery
+    enable_entity_matching: true
+    build_value_dictionary: true
+  - column_name: has_review
+    enable_entity_matching: true
+    build_value_dictionary: true
+  - column_name: freight_to_order_value_ratio
+    exclude: false
+  - column_name: payment_reconciliation_gap
+    exclude: false
+  - column_name: review_score_band
+    enable_entity_matching: true
+    build_value_dictionary: true
+  - column_name: order_value_band
+    enable_entity_matching: true
+    build_value_dictionary: true
+  - column_name: delivery_speed_band
+    enable_entity_matching: true
+    build_value_dictionary: true
+  - column_name: delivery_status_bucket
+    enable_entity_matching: true
+    build_value_dictionary: true
+  - column_name: delivery_review_segment
+    enable_entity_matching: true
+    build_value_dictionary: true
+

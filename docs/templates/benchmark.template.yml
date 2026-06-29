@@ -1,0 +1,17 @@
+# Benchmark Template
+# Copy to benchmarks/NN_slug.yml and fill in values
+
+id: {{32_CHAR_HEX_ID}}  # python -c "import uuid; print(uuid.uuid4().hex)"
+question: >-
+  {{BENCHMARK_QUESTION}}
+answer_format: SQL
+sql: |-
+  SELECT
+    {{OUTPUT_DIM}},
+    {{MEASURE_EXPR}} AS {{ALIAS}}
+  FROM {{CATALOG}}.{{SCHEMA}}.{{TABLE}}
+  WHERE {{DATE_COL}} >= {{START_EXPR}}
+    AND {{DATE_COL}} < {{END_EXPR}}
+  GROUP BY ALL
+  ORDER BY {{ALIAS}} DESC
+  LIMIT {{N}}

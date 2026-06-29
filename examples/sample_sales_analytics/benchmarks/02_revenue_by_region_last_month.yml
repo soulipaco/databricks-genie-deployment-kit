@@ -1,0 +1,12 @@
+id: e1f2a3b4c5d6789012345678901234b2
+question: What is the total monthly revenue by region for last month?
+answer_format: SQL
+sql: |-
+  SELECT
+    region,
+    ROUND(MEASURE(monthly_revenue), 0) AS monthly_revenue
+  FROM sample_catalog.analytics_schema.sales_performance_mv
+  WHERE month_start_date >= ADD_MONTHS(DATE_TRUNC('MONTH', CURRENT_DATE()), -1)
+    AND month_start_date < DATE_TRUNC('MONTH', CURRENT_DATE())
+  GROUP BY ALL
+  ORDER BY monthly_revenue DESC

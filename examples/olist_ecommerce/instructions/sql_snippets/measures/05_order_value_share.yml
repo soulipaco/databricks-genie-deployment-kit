@@ -1,0 +1,13 @@
+id: 6a7b8c9d0e1f4a2b8c9d0e1f4a2b0005
+alias: order_value_share
+display_name: Order Value Share
+sql: SUM(order_value_share)
+synonyms:
+  - sales share
+  - value contribution
+  - contribution share
+instruction: |
+  WHEN_TO_USE: Use with product category diagnostics to show each category's contribution to total order value.
+  SCOPE_TABLES: workspace.olist_ecommerce.olist_category_diagnostics_mv.
+  RISK_IF_MISUSED: Do not use on order-level data; calculate shares from diagnostic aggregate tables.
+

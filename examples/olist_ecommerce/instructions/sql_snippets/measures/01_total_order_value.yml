@@ -1,0 +1,13 @@
+id: 6a7b8c9d0e1f4a2b8c9d0e1f4a2b0001
+alias: total_order_value
+display_name: Total Order Value
+sql: SUM(order_value)
+synonyms:
+  - revenue
+  - sales
+  - order value
+instruction: |
+  WHEN_TO_USE: Use to calculate total merchandise/order value excluding freight.
+  SCOPE_TABLES: workspace.olist_ecommerce.olist_order_metrics_mv.
+  RISK_IF_MISUSED: Do not use payment_value as revenue unless the user specifically asks about payments.
+

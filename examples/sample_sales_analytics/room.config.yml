@@ -1,0 +1,43 @@
+room_name: sample_sales_analytics
+title: sample.sales Revenue Performance
+description: |-
+  Revenue performance analytics room for sample.sales, powered by the monthly performance metric view.
+
+  Supported analysis includes:
+  - Monthly revenue, pipeline value, and deal close rate by region and account manager
+  - Top and bottom performers by any KPI
+  - Weekly and monthly trends
+  - Comparison of regions and product tiers
+  - Parameterized date range queries
+
+  Use natural-language business questions.
+version: 2
+purpose: Revenue and pipeline performance analysis for the sample.sales sales organization
+source_of_truth: repo
+parent_path: /Users/analyst@sample.sales
+
+sample_questions:
+  - id: a1b2c3d4e5f6789012345678901234aa
+    question: What is the monthly revenue by region for the last 6 months?
+  - id: a1b2c3d4e5f6789012345678901234ab
+    question: Who are the top 5 account managers by deal close rate this month?
+  - id: a1b2c3d4e5f6789012345678901234ac
+    question: How has pipeline value trended over the last 12 weeks?
+  - id: a1b2c3d4e5f6789012345678901234ad
+    question: Compare revenue for the Enterprise and Mid-Market segments last quarter
+  - id: a1b2c3d4e5f6789012345678901234ae
+    question: Which product tier has the highest deal close rate this month?
+
+data_sources: data_sources/tables.yml
+column_metadata: metadata/columns/
+
+instructions:
+  general: instructions/general.md
+  example_sql: instructions/example_sql/
+  sql_snippets:
+    filters: instructions/sql_snippets/filters/
+    measures: instructions/sql_snippets/measures/
+    dimensions: instructions/sql_snippets/dimensions/
+
+benchmarks: benchmarks/
+bootstrap_snapshot: snapshots/exported_space.json

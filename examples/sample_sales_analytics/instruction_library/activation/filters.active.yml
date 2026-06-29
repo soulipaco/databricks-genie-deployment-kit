@@ -1,0 +1,7 @@
+asset_type: filters
+active_ids:
+  # --- Dimension filters ---
+  - b1c2d3e4f5a6789012345678901234f1   # 01_by_region.yml
+  - b1c2d3e4f5a6789012345678901234f2   # 02_by_product_tier.yml
+  # --- Temporal filters ---
+  - b1c2d3e4f5a6789012345678901234f6   # 06_last_month.yml

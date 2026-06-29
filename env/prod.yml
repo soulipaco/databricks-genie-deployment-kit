@@ -1,0 +1,9 @@
+# env/prod.yml — Production Environment Configuration
+# NEVER commit real credentials to version control
+# Use environment variables or a secrets manager in CI/CD
+
+environment: prod
+workspace_url: https://{{PROD_WORKSPACE_HOST}}
+warehouse_id: {{PROD_WAREHOUSE_ID}}
+space_id: {{PROD_GENIE_SPACE_ID}}
+parent_path: {{PROD_WORKSPACE_FOLDER_PATH}}

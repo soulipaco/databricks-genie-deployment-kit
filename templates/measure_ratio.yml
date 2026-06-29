@@ -1,0 +1,13 @@
+# Template: Ratio Measure Snippet (e.g., success rate, conversion rate)
+# Copy this to instruction_library/corpus/measures/NN_slug.yml
+
+id: {{32_CHAR_HEX_ID}}
+alias: {{RATIO_ALIAS}}
+display_name: {{RATIO_DISPLAY_NAME}}
+sql: ROUND(SUM({{NUMERATOR_COLUMN}}) / NULLIF(SUM({{DENOMINATOR_COLUMN}}), 0), 4)
+synonyms:
+  - {{SYNONYM_1}}
+instruction: |
+  WHEN_TO_USE: Use to calculate {{WHAT_RATIO_MEASURES}} as a rate (0 to 1).
+  SCOPE_TABLES: {{TABLE_IDENTIFIER}}.
+  RISK_IF_MISUSED: Produces NULL if {{DENOMINATOR_COLUMN}} sum is 0. Use COALESCE if needed.

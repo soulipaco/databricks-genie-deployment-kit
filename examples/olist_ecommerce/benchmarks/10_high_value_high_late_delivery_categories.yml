@@ -1,0 +1,19 @@
+id: 8f1a2b3c4d5e6f708192a3b4c5d6e010
+question: Which product categories combine high order value share and high late delivery rate?
+sql: |-
+  SELECT
+    product_category,
+    total_order_value,
+    order_value_share,
+    late_delivery_rate,
+    average_review_score,
+    review_score_gap_late_vs_on_time,
+    pareto_order_value_bucket
+  FROM workspace.olist_ecommerce.olist_category_diagnostics_mv
+  WHERE order_value_share >= 0.01
+    AND late_delivery_rate >= 0.08
+  ORDER BY order_value_share DESC, late_delivery_rate DESC
+  LIMIT 10
+expected_behavior: |-
+  Prioritize categories by combining business value share and operational late-delivery risk.
+

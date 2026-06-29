@@ -1,0 +1,49 @@
+table: "workspace.olist_ecommerce.olist_category_diagnostics_mv"
+columns:
+  - column_name: product_category
+    enable_entity_matching: true
+    build_value_dictionary: true
+  - column_name: order_count
+    exclude: false
+  - column_name: total_order_value
+    exclude: false
+  - column_name: total_freight_value
+    exclude: false
+  - column_name: avg_freight_to_order_value_ratio
+    exclude: false
+  - column_name: average_review_score
+    exclude: false
+  - column_name: review_coverage_rate
+    exclude: false
+  - column_name: late_delivery_rate
+    exclude: false
+  - column_name: average_delivery_days
+    exclude: false
+  - column_name: average_days_late
+    exclude: false
+  - column_name: avg_review_when_late
+    exclude: false
+  - column_name: avg_review_when_on_time
+    exclude: false
+  - column_name: review_score_gap_late_vs_on_time
+    exclude: false
+  - column_name: order_count_share
+    exclude: false
+  - column_name: order_value_share
+    exclude: false
+  - column_name: freight_value_share
+    exclude: false
+  - column_name: cumulative_order_value_share
+    exclude: false
+  - column_name: order_value_rank
+    exclude: false
+  - column_name: pareto_order_value_bucket
+    enable_entity_matching: true
+    build_value_dictionary: true
+  - column_name: review_4_2_target_status
+    enable_entity_matching: true
+    build_value_dictionary: true
+  - column_name: late_delivery_rate_needed_for_4_2_review
+    exclude: false
+  - column_name: late_delivery_rate_reduction_gap_to_4_2_review
+    exclude: false

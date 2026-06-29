@@ -1,0 +1,8 @@
+# sample_sales_analytics example environment config
+# Replace all values before deploying
+
+environment: local
+workspace_url: https://{{SAMPLE_WORKSPACE_HOST}}
+warehouse_id: {{SAMPLE_WAREHOUSE_ID}}
+space_id: null                      # null = create new room
+parent_path: /Users/analyst@sample.sales

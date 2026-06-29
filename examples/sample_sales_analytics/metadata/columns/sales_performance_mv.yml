@@ -1,0 +1,33 @@
+table: sample_catalog.analytics_schema.sales_performance_mv
+columns:
+  - column_name: account_id
+    exclude: false
+  - column_name: account_name
+    enable_entity_matching: true
+    get_example_values: true
+  - column_name: account_manager
+    enable_entity_matching: true
+    get_example_values: true
+  - column_name: region
+    enable_entity_matching: true
+    build_value_dictionary: true
+  - column_name: product_tier
+    enable_entity_matching: true
+    build_value_dictionary: true
+  - column_name: segment
+    enable_entity_matching: true
+    build_value_dictionary: true
+  - column_name: month_start_date
+    enable_format_assistance: true
+  - column_name: monthly_revenue
+    exclude: false
+  - column_name: pipeline_value
+    exclude: false
+  - column_name: deal_close_rate
+    exclude: false
+  - column_name: deals_won
+    exclude: false
+  - column_name: deals_lost
+    exclude: false
+  - column_name: internal_cost_center
+    exclude: true

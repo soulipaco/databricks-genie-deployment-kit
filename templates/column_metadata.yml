@@ -1,0 +1,14 @@
+# Template: Column Metadata File
+# Copy this to metadata/columns/<table_name>.yml
+
+table: {{CATALOG}}.{{SCHEMA}}.{{TABLE_NAME}}
+columns:
+  - column_name: {{COLUMN_1}}
+    enable_entity_matching: true     # Enable fuzzy matching for names/IDs
+  - column_name: {{COLUMN_2}}
+    get_example_values: true         # Fetch sample values for context
+    build_value_dictionary: true     # Build lookup dictionary
+  - column_name: {{COLUMN_3}}
+    enable_format_assistance: true   # Help with formatting (dates, numbers)
+  - column_name: {{EXCLUDE_COLUMN}}
+    exclude: true                    # Hide from Genie completely

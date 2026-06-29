@@ -1,0 +1,12 @@
+id: c1d2e3f4a5b6789012345678901234m3
+alias: pipeline_value
+display_name: Pipeline Value
+sql: MEASURE(pipeline_value)
+synonyms:
+  - pipeline
+  - opportunity value
+  - total pipeline
+instruction: |
+  WHEN_TO_USE: Use to aggregate total pipeline value across any dimension.
+  SCOPE_TABLES: sample_catalog.analytics_schema.sales_performance_mv.
+  RISK_IF_MISUSED: Always use MEASURE() — do not SUM the pipeline_value column directly.

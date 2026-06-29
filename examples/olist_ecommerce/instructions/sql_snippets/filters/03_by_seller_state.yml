@@ -1,0 +1,12 @@
+id: 7a8b9c0d1e2f4a3b9c0d1e2f4a3b0003
+display_name: By Seller State
+sql: seller_state ILIKE '%:SellerState%'
+synonyms:
+  - merchant state
+  - seller geography
+instruction: |
+  WHEN_TO_USE: Apply when the user filters by seller state.
+  SCOPE_TABLES: workspace.olist_ecommerce.olist_order_metrics_mv.
+  TIMEFRAME_HINT: any.
+  RISK_IF_MISUSED: Do not use customer_state when the user asks where sellers are located.
+

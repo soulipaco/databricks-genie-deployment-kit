@@ -1,0 +1,13 @@
+# Filter Snippet Template
+# Copy to instruction_library/corpus/filters/NN_slug.yml
+
+id: {{32_CHAR_HEX_ID}}
+display_name: By {{DIMENSION_NAME}}
+sql: {{DIMENSION_COLUMN}} ILIKE '%:{{FILTER_PARAM}}%'
+synonyms:
+  - {{SYNONYM}}
+instruction: |
+  WHEN_TO_USE: Apply when the user filters by {{DIMENSION_NAME}}.
+  SCOPE_TABLES: {{TABLE_IDENTIFIER}}.
+  TIMEFRAME_HINT: any.
+  RISK_IF_MISUSED: {{RISK}}.

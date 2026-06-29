@@ -1,0 +1,16 @@
+# Template: Instruction Capacity Limits
+# This is instruction_library/activation/limits.yml
+# Tracks capacity budget for the Genie room instruction set
+# Room: {{ROOM_NAME}}
+
+max_total_space_instructions: 100
+general_text_instruction_count: 1
+table_description_count_mode: auto_from_data_sources_tables
+active_budgets:
+  example_sql:
+    mode: derived_total_minus_general_minus_tables
+    # Budget = 100 - 1 (general) - N (tables)
+  filters:
+    max_active: 100
+  measures:
+    max_active: 100

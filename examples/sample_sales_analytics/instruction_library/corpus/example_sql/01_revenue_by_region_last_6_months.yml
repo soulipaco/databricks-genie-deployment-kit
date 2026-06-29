@@ -1,0 +1,21 @@
+id: d1e2f3a4b5c6789012345678901234e1
+question: What is the monthly revenue by region for the last 6 months?
+sql: |-
+  SELECT
+    DATE_TRUNC('MONTH', month_start_date) AS month,
+    region,
+    MEASURE(monthly_revenue) AS monthly_revenue
+  FROM sample_catalog.analytics_schema.sales_performance_mv
+  WHERE month_start_date >= ADD_MONTHS(DATE_TRUNC('MONTH', CURRENT_DATE()), -5)
+    AND month_start_date < ADD_MONTHS(DATE_TRUNC('MONTH', CURRENT_DATE()), 1)
+  GROUP BY ALL
+  ORDER BY month, region
+usage_guidance: |
+  TRIGGER PHRASES:
+    Use for: "revenue by region", "monthly revenue by region", "how does revenue vary by region"
+    Date variants: "last 6 months", "past 6 months", "six month trend"
+  DATE BINDING:
+    Start = ADD_MONTHS(DATE_TRUNC('MONTH', CURRENT_DATE()), -5)  (6 months including current)
+    End = ADD_MONTHS(DATE_TRUNC('MONTH', CURRENT_DATE()), 1)
+  MANDATORY OUTPUT CONTRACT: month, region, monthly_revenue
+  MANDATORY ANTI-PATTERNS: Do NOT exclude the current month.

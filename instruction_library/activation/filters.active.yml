@@ -1,0 +1,6 @@
+asset_type: filters
+active_ids:
+  # Add active filter IDs here following the format:
+  # - <32-char hex>   # NN_snippet_slug.yml
+  # Example:
+  # - a1b2c3d4e5f6789012345678901234ab   # 01_by_department.yml

@@ -1,0 +1,13 @@
+# Template: Dimension Filter Snippet (text/categorical dimension)
+# Copy this to instruction_library/corpus/filters/NN_slug.yml
+
+id: {{32_CHAR_HEX_ID}}
+display_name: {{FILTER_DISPLAY_NAME}}  # e.g. "By Department"
+sql: {{DIMENSION_COLUMN}} ILIKE '%:{{FILTER_PARAM_NAME}}%'  # NO WHERE keyword
+synonyms:                              # Optional
+  - {{SYNONYM_1}}
+instruction: |
+  WHEN_TO_USE: Apply when the user wants to filter by {{DIMENSION_NAME}}.
+  SCOPE_TABLES: {{TABLE_IDENTIFIER}}.
+  TIMEFRAME_HINT: any.
+  RISK_IF_MISUSED: {{RISK_IF_WRONG_DIM_USED}}.

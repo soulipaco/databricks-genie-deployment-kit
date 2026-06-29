@@ -1,0 +1,13 @@
+# Measure Snippet Template
+# Copy to instruction_library/corpus/measures/NN_slug.yml
+
+id: {{32_CHAR_HEX_ID}}
+alias: {{ALIAS}}
+display_name: {{DISPLAY_NAME}}
+sql: MEASURE({{COLUMN_NAME}})
+synonyms:
+  - {{SYNONYM}}
+instruction: |
+  WHEN_TO_USE: Use to calculate {{WHAT_IT_MEASURES}}.
+  SCOPE_TABLES: {{TABLE_IDENTIFIER}}.
+  RISK_IF_MISUSED: {{RISK}}.

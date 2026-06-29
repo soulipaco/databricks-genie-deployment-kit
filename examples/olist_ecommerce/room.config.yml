@@ -1,0 +1,53 @@
+room_name: olist_ecommerce_analytics
+title: Olist E-Commerce Operations Analytics
+description: |-
+  E-commerce operations analytics room powered by the public Olist marketplace dataset.
+
+  Supported analysis includes:
+  - Order value, freight, and payment trends
+  - Product category and geography performance
+  - Delivery duration and late-delivery diagnostics
+  - Review score and customer experience analysis
+  - Seller and customer state comparisons
+
+  Use natural-language business questions.
+version: 2
+purpose: Public portfolio demo for Databricks Genie, AI/BI dashboards, and deployment-as-code workflows
+source_of_truth: repo
+parent_path: "{{WORKSPACE_PARENT_PATH}}"
+
+sample_questions:
+  - id: f4d537fdcc884cdb839a5f5fcf720101
+    question: What was total order value by month?
+  - id: f4d537fdcc884cdb839a5f5fcf720102
+    question: Which product categories have the highest late delivery rate?
+  - id: f4d537fdcc884cdb839a5f5fcf720103
+    question: Which customer states have the lowest average review score?
+  - id: f4d537fdcc884cdb839a5f5fcf720104
+    question: Do late deliveries have lower review scores than on-time deliveries?
+  - id: f4d537fdcc884cdb839a5f5fcf720105
+    question: Which seller states have the highest total freight value?
+  - id: f4d537fdcc884cdb839a5f5fcf720106
+    question: Which product categories make up the top 80 percent of order value?
+  - id: f4d537fdcc884cdb839a5f5fcf720107
+    question: How does late delivery affect review score by product category?
+  - id: f4d537fdcc884cdb839a5f5fcf720108
+    question: To reach a 4.2 average review score, which categories need the largest late delivery rate reduction?
+  - id: f4d537fdcc884cdb839a5f5fcf720109
+    question: Which customer states drive the Pareto top 80 percent of order volume?
+  - id: f4d537fdcc884cdb839a5f5fcf72010a
+    question: Which product categories combine high order value share and high late delivery rate?
+
+data_sources: data_sources/tables.yml
+column_metadata: metadata/columns/
+
+instructions:
+  general: instructions/general.md
+  example_sql: instructions/example_sql/
+  sql_snippets:
+    filters: instructions/sql_snippets/filters/
+    measures: instructions/sql_snippets/measures/
+    dimensions: instructions/sql_snippets/dimensions/
+
+benchmarks: benchmarks/
+bootstrap_snapshot: snapshots/exported_space.json

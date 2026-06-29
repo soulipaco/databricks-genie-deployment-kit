@@ -1,0 +1,14 @@
+id: e1f2a3b4c5d6789012345678901234b1
+question: Who are the top 5 account managers by monthly revenue last month?
+answer_format: SQL
+sql: |-
+  SELECT
+    account_manager,
+    ROUND(MEASURE(monthly_revenue), 0) AS monthly_revenue
+  FROM sample_catalog.analytics_schema.sales_performance_mv
+  WHERE month_start_date >= ADD_MONTHS(DATE_TRUNC('MONTH', CURRENT_DATE()), -1)
+    AND month_start_date < DATE_TRUNC('MONTH', CURRENT_DATE())
+  GROUP BY ALL
+  HAVING monthly_revenue > 0
+  ORDER BY monthly_revenue DESC
+  LIMIT 5

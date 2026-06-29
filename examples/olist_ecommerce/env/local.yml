@@ -1,0 +1,10 @@
+# Olist demo environment config
+# Replace placeholders before deploying.
+
+workspace_url: https://{{DATABRICKS_WORKSPACE_HOST}}
+warehouse_id: {{SQL_WAREHOUSE_ID}}
+space_id: null
+parent_path: {{WORKSPACE_FOLDER_PATH}}
+catalog: workspace
+schema: olist_ecommerce
+raw_volume: /Volumes/workspace/olist_ecommerce/olist_raw

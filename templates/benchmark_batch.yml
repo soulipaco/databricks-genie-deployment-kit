@@ -1,0 +1,17 @@
+# Template: Benchmark Batch Evaluation Config
+# Used by scripts/prepare_eval.py to define an evaluation run
+
+eval_run_id: {{EVAL_RUN_ID}}
+eval_date: {{YYYY-MM-DD}}
+description: {{WHAT_THIS_EVAL_COVERS}}
+
+# Optional: restrict to a subset of benchmarks
+benchmark_filter:
+  categories:              # Filter by question category (optional)
+    - {{CATEGORY_A}}
+    - {{CATEGORY_B}}
+  ids:                     # Filter by specific benchmark IDs (optional)
+    - {{BENCHMARK_ID_1}}
+    - {{BENCHMARK_ID_2}}
+
+# The actual benchmark list is loaded from benchmarks/ at runtime

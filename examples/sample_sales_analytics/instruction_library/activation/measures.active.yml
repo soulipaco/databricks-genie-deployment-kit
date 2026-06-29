@@ -1,0 +1,5 @@
+asset_type: measures
+active_ids:
+  - c1d2e3f4a5b6789012345678901234m1   # 01_monthly_revenue.yml
+  - c1d2e3f4a5b6789012345678901234m2   # 02_deal_close_rate.yml
+  - c1d2e3f4a5b6789012345678901234m3   # 03_pipeline_value.yml

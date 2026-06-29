@@ -1,0 +1,12 @@
+id: c1d2e3f4a5b6789012345678901234m2
+alias: deal_close_rate
+display_name: Deal Close Rate
+sql: CONCAT(ROUND(MEASURE(deal_close_rate) * 100, 2), '%')
+synonyms:
+  - close rate
+  - win rate
+  - closure rate
+instruction: |
+  WHEN_TO_USE: Use to display deal close rate as a formatted percentage.
+  SCOPE_TABLES: sample_catalog.analytics_schema.sales_performance_mv.
+  RISK_IF_MISUSED: This measure formats as a string percentage. Do not use in numeric comparisons — use MEASURE(deal_close_rate) directly for comparisons.

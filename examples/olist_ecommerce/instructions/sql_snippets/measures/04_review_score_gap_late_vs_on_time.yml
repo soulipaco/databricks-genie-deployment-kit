@@ -1,0 +1,13 @@
+id: 6a7b8c9d0e1f4a2b8c9d0e1f4a2b0004
+alias: review_score_gap_late_vs_on_time
+display_name: Review Score Gap Late Vs On Time
+sql: AVG(review_score_gap_late_vs_on_time)
+synonyms:
+  - late delivery impact
+  - review score gap
+  - satisfaction impact
+instruction: |
+  WHEN_TO_USE: Use with diagnostic aggregate tables to quantify how much higher on-time review scores are compared with late-delivery review scores.
+  SCOPE_TABLES: workspace.olist_ecommerce.olist_category_diagnostics_mv; workspace.olist_ecommerce.olist_customer_state_diagnostics_mv.
+  RISK_IF_MISUSED: Do not average this field across mixed grains unless explicitly summarizing multiple categories or states.
+

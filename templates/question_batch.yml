@@ -1,0 +1,30 @@
+# Template: Question Generation Batch Config
+# Used to systematically generate benchmark questions by category
+
+generation_batch_id: {{BATCH_ID}}
+target_table: {{CATALOG}}.{{SCHEMA}}.{{TABLE}}
+question_categories:
+  - category: A
+    description: Summary / ranking by dimension
+    count: {{COUNT_A}}
+    dimensions:
+      - {{DIM_1}}
+      - {{DIM_2}}
+    measures:
+      - {{MEASURE_1}}
+  - category: B
+    description: Trend analysis (weekly/monthly)
+    count: {{COUNT_B}}
+    period_grains:
+      - WEEK
+      - MONTH
+  - category: C
+    description: Top-N ranking
+    count: {{COUNT_C}}
+    default_n: 5
+  - category: D
+    description: Period over period comparison
+    count: {{COUNT_D}}
+  - category: G
+    description: Parameterized date range
+    count: {{COUNT_G}}

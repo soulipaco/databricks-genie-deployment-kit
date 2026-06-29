@@ -1,0 +1,20 @@
+# Template: Temporal Filter Snippet (date range)
+# Copy this to instruction_library/corpus/filters/NN_slug.yml
+
+id: {{32_CHAR_HEX_ID}}
+display_name: {{TEMPORAL_FILTER_DISPLAY_NAME}}  # e.g. "Last Month"
+sql: >-
+  {{DATE_COLUMN}} >= {{START_EXPRESSION}}
+  AND {{DATE_COLUMN}} < {{END_EXCLUSIVE_EXPRESSION}}
+# Example expressions:
+# Last month:  ADD_MONTHS(DATE_TRUNC('MONTH', CURRENT_DATE()), -1)  AND  DATE_TRUNC('MONTH', CURRENT_DATE())
+# This month:  DATE_TRUNC('MONTH', CURRENT_DATE())  AND  CURRENT_DATE()
+# Last week:   DATE_SUB(DATE_TRUNC('WEEK', CURRENT_DATE()), 7)  AND  DATE_TRUNC('WEEK', CURRENT_DATE())
+# Yesterday:   DATE_SUB(CURRENT_DATE(), 1)  AND  CURRENT_DATE()
+synonyms:
+  - {{SYNONYM_1}}
+instruction: |
+  WHEN_TO_USE: Apply when user asks for {{TEMPORAL_SCOPE_DESCRIPTION}}.
+  SCOPE_TABLES: {{TABLE_IDENTIFIER}}.
+  TIMEFRAME_HINT: {{TIMEFRAME_DESCRIPTION}}.
+  RISK_IF_MISUSED: Do not confuse with rolling N days — this uses calendar {{PERIOD_TYPE}} boundaries.

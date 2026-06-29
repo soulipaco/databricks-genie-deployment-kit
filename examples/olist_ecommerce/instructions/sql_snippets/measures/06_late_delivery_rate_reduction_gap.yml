@@ -1,0 +1,13 @@
+id: 6a7b8c9d0e1f4a2b8c9d0e1f4a2b0006
+alias: late_delivery_rate_reduction_gap_to_4_2_review
+display_name: Late Delivery Rate Reduction Gap To 4.2 Review
+sql: AVG(late_delivery_rate_reduction_gap_to_4_2_review)
+synonyms:
+  - target gap
+  - required late delivery reduction
+  - improvement gap
+instruction: |
+  WHEN_TO_USE: Use to answer target questions like how much late delivery rate needs to improve to reach a 4.2 average review score.
+  SCOPE_TABLES: workspace.olist_ecommerce.olist_category_diagnostics_mv; workspace.olist_ecommerce.olist_customer_state_diagnostics_mv.
+  RISK_IF_MISUSED: Treat as a modeled what-if estimate, not a proven causal effect.
+

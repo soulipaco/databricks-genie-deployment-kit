@@ -1,0 +1,115 @@
+# ============================================================================
+# Playbook Blueprint — TEMPLATE (Generic Deployment Kit)
+# ============================================================================
+# This file defines domain content for generate_playbook.py.
+# Each entry under `domains` corresponds to one analysis domain.
+#
+# AGENTS: Before modifying this file:
+#   1. Read pipeline_playbook_generator/README.md
+#   2. Each domain key must partially match a metadata/columns/*.yml filename
+#   3. The question_category value must match what pipeline/pipeline_config.yml uses
+#   4. Run: python pipeline_playbook_generator/generate_playbook.py --kit-format genie_kit
+#
+# IMPORTANT: The domain below is a placeholder reference.
+# It shows the correct structure but is NOT wired into the actual pipeline flow
+# (pipeline_config.yml still has {{PLACEHOLDER}} values).
+# Replace or extend it with domains that match this room's actual data sources.
+# ============================================================================
+
+playbook:
+  title: "{{ROOM_DISPLAY_TITLE}} — Action Playbook"
+  source_name: "{{ROOM_NAME}}_deployment_kit"
+  description: >-
+    Action plan playbook for {{ROOM_DISPLAY_TITLE}}. Generated from the
+    deployment kit metadata and geniecode context.
+
+# ── Domains ──────────────────────────────────────────────────────────────────
+# Each key must match (or partially match) a filename in metadata/columns/.
+# Example: domain key "{{QUESTION_CATEGORY}}" matches
+#   metadata/columns/{{QUESTION_CATEGORY}}_metric_view.yml
+#   because the key is contained in the filename.
+#
+# REFERENCE EXAMPLE — replace with your actual domain(s):
+# ─────────────────────────────────────────────────────────────────────────────
+domains:
+  "{{QUESTION_CATEGORY}}":             # e.g. sales_performance, support_quality, etc.
+    display_name: "{{DOMAIN_DISPLAY_NAME}}"   # e.g. "Sales Performance"
+    question_category: "{{QUESTION_CATEGORY}}"
+
+    playbook_title: "{{DOMAIN_DISPLAY_NAME}} Operations Playbook"
+    playbook_subtitle: "Action Plan Recommendations for KPI-Driven Trend Analysis"
+    playbook_note: >-
+      Generated from the deployment kit. SME review required before production use.
+    intro_text: >-
+      This playbook is organized around common operational patterns and designed
+      for vector-search retrieval.
+
+    # ── KPIs ─────────────────────────────────────────────────────────────────
+    kpis_covered:
+      - name: "{{KPI_1_NAME}}"
+        description: "{{KPI_1_DESCRIPTION}}"
+      - name: "{{KPI_2_NAME}}"
+        description: "{{KPI_2_DESCRIPTION}}"
+
+    # ── Interpretation rules (listed in the playbook introduction) ───────────
+    interpretation_rules:
+      - "{{INTERPRETATION_RULE_1}}"
+      - "{{INTERPRETATION_RULE_2}}"
+
+    # ── Scenarios (one per warning pattern detected by trends_analysis) ──────
+    # Add as many scenarios as the room supports.
+    scenarios:
+      - letter: "A"
+        title: "{{SCENARIO_A_TITLE}}"
+        symptoms:
+          - "{{SCENARIO_A_SYMPTOM_1}}"
+          - "{{SCENARIO_A_SYMPTOM_2}}"
+        likely_causes:
+          - "{{SCENARIO_A_CAUSE_1}}"
+          - "{{SCENARIO_A_CAUSE_2}}"
+        action_plan_recommendations:
+          - heading: "Immediate actions (today-48h)"
+            actions:
+              - "{{IMMEDIATE_ACTION_1}}"
+              - "{{IMMEDIATE_ACTION_2}}"
+          - heading: "Short-term actions (1-4 weeks)"
+            actions:
+              - "{{SHORT_TERM_ACTION_1}}"
+              - "{{SHORT_TERM_ACTION_2}}"
+        measurement_targets:
+          - "{{MEASUREMENT_TARGET_1}}"
+
+    # ── Action cards (short vector-search-retrieval snippets) ────────────────
+    action_cards:
+      - title: "{{ACTION_CARD_TITLE}}"
+        trigger: "{{ACTION_CARD_TRIGGER}}"
+        actions:
+          - "{{ACTION_CARD_ACTION_1}}"
+          - "{{ACTION_CARD_ACTION_2}}"
+        expected_impact: "{{EXPECTED_IMPACT}}"
+
+    # ── Example plans (worked examples for Section 4 of the playbook) ────────
+    example_plans:
+      - number: 1
+        title: "{{EXAMPLE_PLAN_TITLE}}"
+        observed_trend: "{{OBSERVED_TREND}}"
+        plan:
+          - "{{PLAN_ACTION_1}}"
+          - "{{PLAN_ACTION_2}}"
+        success_metrics: "{{SUCCESS_METRICS}}"
+
+# ── Cross-domain example plans (optional) ─────────────────────────────────────
+example_plans: []
+
+# ─────────────────────────────────────────────────────────────────────────────
+# HOW TO ADD A DOMAIN
+# ─────────────────────────────────────────────────────────────────────────────
+# 1. Copy the domain block above under `domains:`
+# 2. Set the key to match your metadata/columns/*.yml filename (partial match is fine)
+# 3. Fill in all field values
+# 4. Add a matching entry to pipeline/pipeline_config.yml:
+#    - Under playbooks.sources: add the PDF file and question_category
+#    - Under questions.seeds: add the deep research question
+#    - Under system_prompts: add the LLM expert prompt for this domain
+# 5. Run: python pipeline_playbook_generator/generate_playbook.py --kit-format genie_kit
+# ─────────────────────────────────────────────────────────────────────────────
