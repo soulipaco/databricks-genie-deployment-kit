@@ -2,6 +2,10 @@
 
 Databricks AI/BI and Genie demo built on the public Brazilian E-Commerce dataset by Olist.
 
+Live dashboard:
+
+[Olist E-Commerce AI/BI Dashboard](https://dbc-5a674036-8eaa.cloud.databricks.com/dashboardsv3/01f173eb9b821ef9b5cf8e6c8ec78028/published?o=7474648785966975)
+
 ## Dataset
 
 Source: https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
@@ -17,8 +21,23 @@ Create a public portfolio project that shows:
 - a Genie-ready gold table
 - semantic metadata and sample questions
 - AI/BI dashboard planning
+- a published 29-widget AI/BI dashboard across 8 pages
 - generated action playbooks for RAG-backed action planning
 - benchmark questions for deployment quality
+
+## End-to-End Demo Flow
+
+```mermaid
+flowchart LR
+    A["Public Olist CSVs"] --> B["Databricks Bronze Tables"]
+    B --> C["Gold Order Metrics"]
+    C --> D["Diagnostic Tables"]
+    D --> E["Genie Room as Code"]
+    D --> F["Published AI/BI Dashboard"]
+    E --> G["Deep Research Questions"]
+    G --> H["Generated Action Playbook"]
+    H --> I["Vector Search + LLM Action Plans"]
+```
 
 ## Target Gold Table
 
@@ -76,13 +95,20 @@ Use this room for questions like:
 
 ## AI/BI Dashboard
 
-Use `dashboard/dashboard_brief.md` for the first dashboard draft. The recommended layout is:
+The dashboard is already published and shareable:
+
+[Open the live dashboard](https://dbc-5a674036-8eaa.cloud.databricks.com/dashboardsv3/01f173eb9b821ef9b5cf8e6c8ec78028/published?o=7474648785966975)
+
+It contains 29 interactive widgets across 8 pages, using run-as-owner sharing for external demo viewers.
+
+Use `dashboard/dashboard_brief.md` and `dashboard/PUBLISHED_DASHBOARD.md` for the dashboard story. The layout covers:
 
 - Executive overview
 - Revenue and order trends
 - Delivery performance
 - Review quality
 - Geography and product category drilldowns
+- Pareto, driver-impact, and 4.2 review target-gap diagnostics
 
 ## Action-Plan Pipeline
 
@@ -94,3 +120,5 @@ Generated playbook assets live in `pipeline_playbook_generator/generated/`:
 - Vector Search chunk JSON
 - PDF source file for indexing
 - generation summary
+
+The playbook is intentionally tied to the dashboard diagnostics: when a category or state shows high order value, high lateness, review-score weakness, or an unreachable 4.2 target through delivery fixes alone, the playbook explains how to turn that signal into a concrete action plan.

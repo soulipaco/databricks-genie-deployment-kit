@@ -1,5 +1,11 @@
 # AI/BI Dashboard Brief - Olist E-Commerce
 
+Published dashboard:
+
+[Open the live dashboard](https://dbc-5a674036-8eaa.cloud.databricks.com/dashboardsv3/01f173eb9b821ef9b5cf8e6c8ec78028/published?o=7474648785966975)
+
+The published demo contains 29 interactive widgets across 8 pages. It is shared as run-as-owner so external portfolio reviewers can explore the dashboard without their own Databricks permissions.
+
 ## Audience
 
 Marketplace operations, commercial leadership, and customer experience stakeholders.
@@ -41,6 +47,27 @@ Marketplace operations, commercial leadership, and customer experience stakehold
 - Late vs on-time review score gap by product category
 - Categories where late-delivery reduction can help reach a 4.2 review target
 - Customer states in the Pareto top 80 percent of order volume
+
+### 6. Playbook-Ready Action Planning
+
+- Priority categories by value share and late delivery rate
+- Categories where late delivery strongly affects review score
+- Target-gap cases where delivery fixes can or cannot reach 4.2
+- Fields designed to feed generated action-plan prompts
+
+### 7. Data Quality and Governance
+
+- Row counts and date coverage
+- Payment reconciliation gap checks
+- Review availability flags
+- Operational buckets used consistently by dashboard, Genie, and playbook
+
+### 8. Publication View
+
+- Portfolio-ready summary pages
+- Demo-friendly executive KPIs
+- Charts that connect dashboard diagnostics to Genie questions
+- Playbook references for moving from insight to action
 
 ## Suggested Genie Questions
 

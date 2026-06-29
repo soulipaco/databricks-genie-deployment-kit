@@ -30,6 +30,10 @@ The main public demo is:
 
 [examples/olist_ecommerce](examples/olist_ecommerce)
 
+Live dashboard:
+
+[Olist E-Commerce AI/BI Dashboard](https://dbc-5a674036-8eaa.cloud.databricks.com/dashboardsv3/01f173eb9b821ef9b5cf8e6c8ec78028/published?o=7474648785966975)
+
 It uses the public Olist Brazilian E-Commerce dataset and demonstrates:
 
 - raw CSV ingestion to a Unity Catalog Volume
@@ -37,9 +41,10 @@ It uses the public Olist Brazilian E-Commerce dataset and demonstrates:
 - enriched gold analytics tables
 - diagnostic tables for Pareto and target-gap analysis
 - Genie room deployment from local files
-- AI/BI dashboard planning
+- published AI/BI dashboard with 29 widgets across 8 pages
 - benchmark questions for quality checks
 - action-plan pipeline example with generated RAG playbook assets
+- action playbook generation for Vector Search and LLM-backed recommendations
 
 The deployed demo model includes:
 
@@ -54,6 +59,15 @@ Example Genie questions:
 - Which product categories make up the top 80 percent of order value?
 - How does late delivery affect review score by product category?
 - To reach a 4.2 average review score, which categories need the largest late delivery rate reduction?
+
+## What To Review First
+
+For a quick portfolio review:
+
+1. Open the [published AI/BI dashboard](https://dbc-5a674036-8eaa.cloud.databricks.com/dashboardsv3/01f173eb9b821ef9b5cf8e6c8ec78028/published?o=7474648785966975).
+2. Read the Olist room package in [examples/olist_ecommerce](examples/olist_ecommerce).
+3. Inspect the generated action playbook in [examples/olist_ecommerce/pipeline_playbook_generator/generated/olist_ecommerce_analytics_action_playbook.md](examples/olist_ecommerce/pipeline_playbook_generator/generated/olist_ecommerce_analytics_action_playbook.md).
+4. Review the pipeline config in [examples/olist_ecommerce/pipeline/pipeline_config.yml](examples/olist_ecommerce/pipeline/pipeline_config.yml).
 
 ## Repository Tour
 
@@ -107,6 +121,7 @@ The Olist example includes:
 - [Enrichment layer docs](examples/olist_ecommerce/ENRICHMENT.md)
 - [Genie room deploy script](examples/olist_ecommerce/deploy_genie_room.py)
 - [AI/BI dashboard brief](examples/olist_ecommerce/dashboard/dashboard_brief.md)
+- [Published dashboard details](examples/olist_ecommerce/dashboard/PUBLISHED_DASHBOARD.md)
 - [Starter dashboard SQL](examples/olist_ecommerce/dashboard/starter_queries.sql)
 - [Action-plan pipeline example](examples/olist_ecommerce/pipeline/README.md)
 - [Generated Olist action playbook](examples/olist_ecommerce/pipeline_playbook_generator/generated/olist_ecommerce_analytics_action_playbook.md)
