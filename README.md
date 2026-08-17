@@ -199,6 +199,24 @@ Check the Kaggle dataset page for the current license and attribution requiremen
 - Use placeholders in public examples where possible.
 - Rotate any token that was pasted into chat, shell history, or screenshots.
 
+## Validation and CI
+
+Pull requests run the repository validator, a write-free materialization and
+capacity check, and focused contract tests:
+
+```bash
+python scripts/validate.py --fail-on-unexpected-warnings
+python scripts/materialize.py --dry-run --check-limits
+python -m unittest discover -s tests -v
+```
+
+The root kit intentionally remains reusable and therefore reports exactly
+three classified template warnings: one placeholder column-metadata path and
+the placeholder values in `env/local.yml` and `env/prod.yml`. CI permits those
+known template warnings and fails on any new warning class. The contract tests
+verify that activation manifests resolve to canonical corpus assets and that
+the root deploy surface matches its activation manifests.
+
 ## For AI Coding Agents
 
 Read [AGENTS.md](AGENTS.md) first. It contains the full operating manual, file contracts, Genie API notes, and task runbooks.
