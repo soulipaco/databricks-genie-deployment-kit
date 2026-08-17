@@ -6,6 +6,21 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) fo
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- GitHub Actions validation for pull requests and pushes to `main`.
+- Focused tests for validator warnings, activation manifests, and the
+  materialized root deployment surface.
+- MIT license for reuse of the deployment kit.
+
+### Changed
+
+- Validator warnings now carry stable codes and classifications. The three
+  intentional root-template placeholders are documented as expected; CI fails
+  when a new warning class appears.
+
 ## [1.1.0] — 2026-06-19
 
 ### Added — Reports System

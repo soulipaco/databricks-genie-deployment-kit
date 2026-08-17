@@ -17,14 +17,23 @@ import yaml
 KIT_ROOT = Path(__file__).resolve().parent.parent
 ERRORS = []
 WARNINGS = []
+WARNING_DETAILS = []
+
+EXPECTED_TEMPLATE_WARNING_CODES = {
+    "TEMPLATE_COLUMN_METADATA_PLACEHOLDER",
+    "TEMPLATE_ENV_PLACEHOLDER",
+}
 
 
 def error(msg):
     ERRORS.append(msg)
 
 
-def warn(msg):
+def warn(code, msg, classification="action_required"):
     WARNINGS.append(msg)
+    WARNING_DETAILS.append(
+        {"code": code, "message": msg, "classification": classification}
+    )
 
 
 def load_yaml(path):
@@ -66,7 +75,17 @@ def check_data_sources():
         if col_meta:
             col_path = KIT_ROOT / col_meta
             if not col_path.exists():
-                warn(f"Column metadata file missing: {col_meta}")
+                if "{{" in col_meta and "}}" in col_meta:
+                    warn(
+                        "TEMPLATE_COLUMN_METADATA_PLACEHOLDER",
+                        f"Column metadata file missing: {col_meta}",
+                        "expected_template_placeholder",
+                    )
+                else:
+                    warn(
+                        "MISSING_COLUMN_METADATA",
+                        f"Column metadata file missing: {col_meta}",
+                    )
 
 
 def check_id_uniqueness(asset_type, directory):
@@ -80,10 +99,13 @@ def check_id_uniqueness(asset_type, directory):
             continue
         id_ = data.get("id")
         if not id_:
-            warn(f"{directory}/{f.name}: missing 'id' field")
+            warn("MISSING_ASSET_ID", f"{directory}/{f.name}: missing 'id' field")
             continue
         if len(id_) != 32:
-            warn(f"{directory}/{f.name}: id should be 32 chars, got {len(id_)}")
+            warn(
+                "INVALID_ASSET_ID_LENGTH",
+                f"{directory}/{f.name}: id should be 32 chars, got {len(id_)}",
+            )
         if id_ in seen_ids:
             error(f"Duplicate ID {id_} in {directory}: {f.name} and {seen_ids[id_]}")
         else:
@@ -109,12 +131,21 @@ def check_placeholder_in_env():
         with open(env_file) as f:
             content = f.read()
         if "{{" in content:
-            warn(f"{env_file.name}: contains unfilled {{{{PLACEHOLDER}}}} values")
+            warn(
+                "TEMPLATE_ENV_PLACEHOLDER",
+                f"{env_file.name}: contains unfilled {{{{PLACEHOLDER}}}} values",
+                "expected_template_placeholder",
+            )
 
 
 def main():
     parser = argparse.ArgumentParser(description="Validate deployment kit structure")
     parser.add_argument("--output", choices=["text", "json"], default="text")
+    parser.add_argument(
+        "--fail-on-unexpected-warnings",
+        action="store_true",
+        help="Fail when a warning is not an intentional template placeholder",
+    )
     args = parser.parse_args()
 
     check_required_files()
@@ -127,7 +158,18 @@ def main():
     check_placeholder_in_env()
 
     if args.output == "json":
-        result = {"errors": ERRORS, "warnings": WARNINGS, "status": "PASS" if not ERRORS else "FAIL"}
+        unexpected_warnings = [
+            item
+            for item in WARNING_DETAILS
+            if item["code"] not in EXPECTED_TEMPLATE_WARNING_CODES
+        ]
+        result = {
+            "errors": ERRORS,
+            "warnings": WARNINGS,
+            "warning_details": WARNING_DETAILS,
+            "unexpected_warnings": unexpected_warnings,
+            "status": "PASS" if not ERRORS and not unexpected_warnings else "FAIL",
+        }
         print(json.dumps(result, indent=2))
     else:
         if ERRORS:
@@ -136,8 +178,11 @@ def main():
                 print(f"  ERROR: {e}")
         if WARNINGS:
             print(f"WARNINGS ({len(WARNINGS)}):")
-            for w in WARNINGS:
-                print(f"  WARN: {w}")
+            for item in WARNING_DETAILS:
+                print(
+                    f"  WARN [{item['code']}] ({item['classification']}): "
+                    f"{item['message']}"
+                )
         if not ERRORS and not WARNINGS:
             print("Validation passed: 0 errors, 0 warnings")
         elif not ERRORS:
@@ -145,7 +190,16 @@ def main():
         else:
             print(f"Validation FAILED: {len(ERRORS)} errors, {len(WARNINGS)} warnings")
 
-    return 1 if ERRORS else 0
+    unexpected_warnings = [
+        item
+        for item in WARNING_DETAILS
+        if item["code"] not in EXPECTED_TEMPLATE_WARNING_CODES
+    ]
+    if ERRORS:
+        return 1
+    if args.fail_on_unexpected_warnings and unexpected_warnings:
+        return 2
+    return 0
 
 
 if __name__ == "__main__":

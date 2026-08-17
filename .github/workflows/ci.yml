@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+      - name: Install validator dependency
+        run: python -m pip install -r requirements-dev.txt
+      - name: Validate the deployment kit
+        run: python scripts/validate.py --fail-on-unexpected-warnings
+      - name: Check materialization capacity without writing files
+        run: python scripts/materialize.py --dry-run --check-limits
+      - name: Test repository contracts
+        run: python -m unittest discover -s tests -v
